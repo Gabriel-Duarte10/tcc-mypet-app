@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.Auth.HomeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <VerticalStackLayout Padding="20" BackgroundColor="White">
+
+        <Image
+            Margin="0,50"
+            HeightRequest="250"
+            HorizontalOptions="Center"
+            Source="paws.png"
+            WidthRequest="240" />
+
+        <Label
+            Margin="0,0,0,50"
+            FontSize="26"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Start"
+            TextColor="#4A4A4A">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span FontFamily="TypoRoundBoldDemo" Text="Encontre seu pet, produtos para pet tudo na " />
+                    <Span
+                        BackgroundColor="#C5D8A6"
+                        FontFamily="TypoRoundBoldDemo"
+                        Text="comunidade" />
+                    <Span FontFamily="TypoRoundBoldDemo" Text=" de amantes de animais" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Button
+            BackgroundColor="Orange"
+            Clicked="OnStartButtonClicked"
+            CornerRadius="15"
+            HeightRequest="50"
+            Text="Começar"
+            TextColor="White" />
+
+    </VerticalStackLayout>
+</ContentPage>

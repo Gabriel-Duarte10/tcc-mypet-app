@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.Auth.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <VerticalStackLayout Padding="20" BackgroundColor="White">
+        <Image
+            Margin="0,80,0,60"
+            HeightRequest="100"
+            HorizontalOptions="Center"
+            Source="titlemypet.png"
+            WidthRequest="320" />
+
+        <StackLayout Orientation="Horizontal" Spacing="5">
+            <Label
+                FontFamily="PoppinsBold"
+                FontSize="15"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Start"
+                Text="Login"
+                TextColor="#4A4A4A" />
+            <Image
+                HeightRequest="20"
+                Source="user.png"
+                VerticalOptions="Center"
+                WidthRequest="20" />
+        </StackLayout>
+        <Label
+            Margin="0,7,0,0"
+            FontFamily="PoppinsBold"
+            FontSize="10"
+            HorizontalOptions="Start"
+            HorizontalTextAlignment="Start"
+            Text="Olá, Seja Bem-vindo"
+            TextColor="#636363" />
+
+        <Border Margin="0,45,0,0">
+            <Entry
+                x:Name="EntryLogin"
+                Margin="5,0,5,0"
+                FontFamily="PoppinsBold"
+                HeightRequest="50"
+                Keyboard="Text"
+                Placeholder="Login"
+                TextColor="Black" />
+        </Border>
+
+        <Border Margin="0,10,0,0">
+            <Entry
+                x:Name="EntrySenha"
+                Margin="5,0,5,0"
+                FontFamily="PoppinsBold"
+                HeightRequest="50"
+                IsPassword="True"
+                Placeholder="Senha"
+                TextColor="Black" />
+        </Border>
+
+        <Button
+            BackgroundColor="Transparent"
+            FontFamily="PoppinsBold"
+            FontSize="11"
+            HorizontalOptions="End"
+            Text="Esqueceu a senha?"
+            TextColor="#4285F4" />
+
+        <Button
+            Margin="10,30"
+            Padding="15"
+            BackgroundColor="#FF8A00"
+            CornerRadius="12"
+            FontFamily="PoppinsBold"
+            FontSize="22"
+            Text="Login"
+            TextColor="White" />
+
+        <Label
+            FontFamily="PoppinsBold"
+            FontSize="15"
+            HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Não tem uma conta? " TextColor="#636363" />
+                    <Span Text="Cadastre-se" TextColor="#0060FF" />
+                </FormattedString>
+            </Label.FormattedText>
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" />
+            </Label.GestureRecognizers>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>
