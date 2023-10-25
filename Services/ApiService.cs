@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace tcc_mypet_app.Services
 {
     public class ApiService
     {
-        private static readonly HttpClient client = new HttpClient();
-        private const string BaseUrl = "http://192.168.0.160:5031/api/";
+        private static readonly HttpClientHandler clientHandler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+        };
+        private static readonly HttpClient client = new HttpClient(clientHandler);
+        private const string BaseUrl = "https://192.168.1.169:3434/api/";
         //private const string BaseUrl = "https://projetomobileapi.azurewebsites.net/api/";
 
         public async Task<T> GetAsync<T>(string url)
@@ -125,6 +130,57 @@ namespace tcc_mypet_app.Services
                 throw;
             }
         }
+        public async Task<TResult> PostFormDataAsync<TResult>(string url, Dictionary<string, string> formData, List<Stream> streams)
+        {
+            try
+            {
+                using (var content = new MultipartFormDataContent())
+                {
+                    // Adiciona campos de formulário
+                    foreach (var field in formData)
+                    {
+                        content.Add(new StringContent(field.Value), field.Key);
+                    }
 
+                    // Adiciona arquivos
+                    for (int i = 0; i < streams.Count; i++)
+                    {
+                        var stream = streams[i];
+                        stream.Position = 0;  // Certifica-se de que o stream está na posição inicial
+                        var streamContent = new StreamContent(stream);
+                        content.Add(streamContent, "Images", $"image{i}.jpg");  // Ajuste o nome do arquivo conforme necessário
+                    }
+
+                    var response = await client.PostAsync(BaseUrl + url, content);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var error = await response.Content.ReadAsStringAsync();
+                        await Application.Current.MainPage.DisplayAlert("Error", error, "OK");
+                        return default(TResult);
+                    }
+
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<TResult>(responseContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                throw;
+            }
+        }
+        //public async Task<TResult> PutFormDataAsync<TResult>(string url, Dictionary<string, string> formData, List<IFormFile> files)
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+        //        throw;
+        //    }
+        //}
     }
 }
