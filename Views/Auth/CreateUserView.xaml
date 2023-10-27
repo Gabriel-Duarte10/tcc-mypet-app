@@ -190,13 +190,31 @@
                     Placeholder="Ex: 123"
                     TextColor="Black" />
             </Border>
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Adicione uma imagem"
+                TextColor="#636363" />
+            <Grid
+                Margin="0,20,0,0"
+                HeightRequest="80"
+                WidthRequest="350">
+                <Button
+                    BackgroundColor="Transparent"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Clicked="OnAddImageButtonClicked"
+                    Command="{Binding AddImageCommand}"
+                    Opacity="0.4" />
+                <Image
+                    HorizontalOptions="Center"
+                    Opacity="0.3"
+                    Source="plus.png"
+                    VerticalOptions="Center" />
+            </Grid>
 
-            <Button
-                Clicked="OnAddImageButtonClicked"
-                Command="{Binding AddImageCommand}"
-                HeightRequest="50"
-                Text="Adicionar Imagem"
-                WidthRequest="200" />
 
             <Button
                 Margin="10,30"

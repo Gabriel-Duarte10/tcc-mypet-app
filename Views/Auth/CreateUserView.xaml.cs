@@ -7,6 +7,8 @@ using tcc_mypet_app.Models.Request;
 using tcc_mypet_app.Services;
 using static tcc_mypet_app.Services.ViaCEPService;
 
+using CommunityToolkit.Maui.Views;
+
 namespace tcc_mypet_app.Views.Auth;
 
 public partial class CreateUserView : ContentPage
@@ -134,6 +136,8 @@ public partial class CreateUserView : ContentPage
 
     private async void OnCreateButtonClicked(object sender, EventArgs e)
     {
+        var popup = new SpinnerPopup();
+        this.ShowPopup(popup);
         // Criando o dicionário para os campos de formulário
         var formData = new Dictionary<string, string>
         {
@@ -153,18 +157,18 @@ public partial class CreateUserView : ContentPage
         // Convertendo ImageStreams para List<Stream> (já é uma List<Stream>, então não é necessário ToList())
         var images = ImageStreams;
 
-        try
-        {
-            // Usando o novo método PostFormDataAsync
-            var userDto = await Api.PostFormDataAsync<UserDto>("User", formData, images);
+        
+        // Usando o novo método PostFormDataAsync
+        var userDto = await Api.PostFormDataAsync<UserDto>("User", formData, images);
 
-            // Handle success
-            await DisplayAlert("Success", "User created successfully", "OK");
-        }
-        catch (Exception ex)
+        if(userDto != null)
         {
-            // Handle error
-            await DisplayAlert("Error", ex.Message, "OK");
+            await DisplayAlert("Sucesso", "Usuário criado com sucesso", "OK");
+            popup.Close();
+            Navigation.PopModalAsync();
         }
+
+
+        
     }
 }
