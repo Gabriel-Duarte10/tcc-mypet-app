@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="tcc_mypet_app.Views.Auth.CreateUserView"
+    x:Class="tcc_mypet_app.Views.App.EditProfileView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    NavigationPage.HasNavigationBar="False">
+    Title="EditProfileView">
     <ScrollView>
         <VerticalStackLayout Padding="20" BackgroundColor="White">
             <Image
@@ -30,44 +30,6 @@
                     HeightRequest="55"
                     Keyboard="Text"
                     Placeholder="Ex: nome"
-                    TextColor="Black" />
-            </Border>
-            <!--  Repeat the same pattern for other fields. Example for Email:  -->
-            <Label
-                Margin="0,7,0,0"
-                FontFamily="PoppinsRegular"
-                FontSize="15"
-                HorizontalOptions="Start"
-                Text="Email"
-                TextColor="#636363" />
-            <Border Margin="0,10,0,0">
-                <Entry
-                    x:Name="EntryEmail"
-                    Margin="5,0,5,0"
-                    FontFamily="PoppinsRegular"
-                    HeightRequest="55"
-                    Keyboard="Email"
-                    Placeholder="Ex: email@example.com"
-                    TextColor="Black" />
-            </Border>
-
-            <!--  Example for Password:  -->
-            <Label
-                Margin="0,7,0,0"
-                FontFamily="PoppinsRegular"
-                FontSize="15"
-                HorizontalOptions="Start"
-                Text="Senha"
-                TextColor="#636363" />
-            <Border Margin="0,10,0,0">
-                <Entry
-                    x:Name="EntryPassword"
-                    Margin="5,0,5,0"
-                    FontFamily="PoppinsRegular"
-                    HeightRequest="55"
-                    IsPassword="True"
-                    Keyboard="Numeric"
-                    Placeholder="Ex: senha"
                     TextColor="Black" />
             </Border>
 
@@ -228,7 +190,7 @@
                 CornerRadius="12"
                 FontFamily="PoppinsRegular"
                 FontSize="22"
-                Text="Criar"
+                Text="Salvar"
                 TextColor="White" />
         </VerticalStackLayout>
     </ScrollView>

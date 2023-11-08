@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.App.ProfileView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <!--  Imagem de fundo do topo com altura fixa  -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Imagem de fundo do topo  -->
+        <Image
+            Grid.Row="0"
+            Aspect="AspectFill"
+            HeightRequest="150"
+            Source="profileback.jpg" />
+
+        <!--  Frame redondo para a imagem do perfil  -->
+        <Frame
+            Grid.Row="0"
+            Margin="0,75,0,0"
+            Padding="0"
+            BackgroundColor="White"
+            BorderColor="White"
+            CornerRadius="75"
+            HasShadow="False"
+            HeightRequest="150"
+            HorizontalOptions="Center"
+            IsClippedToBounds="True"
+            VerticalOptions="Start"
+            WidthRequest="150">
+
+            <Image
+                x:Name="ImageUser"
+                Aspect="AspectFill"
+                HeightRequest="150"
+                WidthRequest="150" />
+        </Frame>
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="20,75,20,20"
+            Spacing="10">
+            <!--  Substitua "NomeUsuario" e "DescricaoUsuario" pelas propriedades vinculadas apropriadas  -->
+            <Grid Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  A BoxView pode ser usada como uma linha de fundo  -->
+                <BoxView
+                    Grid.Row="0"
+                    HeightRequest="30"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    WidthRequest="1111"
+                    Color="#F6F6F6" />
+
+                <!--  O Label com o texto  -->
+                <Label
+                    x:Name="LabelName"
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <Grid Margin="0,20,0,0" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Frame para 'Editar Perfil'  -->
+                <VerticalStackLayout Grid.Column="0">
+                    <Frame
+                        Padding="10"
+                        BackgroundColor="#F6F6F6"
+                        BorderColor="Transparent"
+                        CornerRadius="100"
+                        HeightRequest="100">
+                        <Image
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Source="edit.png"
+                            WidthRequest="40" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnEditProfileClicked" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <VerticalStackLayout>
+                        <Image Source="edit_icon.png" />
+                        <Label HorizontalTextAlignment="Center" Text="Editar Perfil" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <!--  Frame para 'Favoritos'  -->
+                <VerticalStackLayout Grid.Column="1">
+                    <Frame
+                        Padding="10"
+                        BackgroundColor="#F6F6F6"
+                        BorderColor="Transparent"
+                        CornerRadius="100"
+                        HeightRequest="100">
+                        <Image
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Source="starblue.png"
+                            WidthRequest="40" />
+                    </Frame>
+                    <VerticalStackLayout>
+                        <Image Source="star_icon.png" />
+                        <Label HorizontalTextAlignment="Center" Text="Favoritos" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <!--  Frame para 'Meus Pets'  -->
+                <VerticalStackLayout Grid.Column="2">
+                    <Frame
+                        Padding="10"
+                        BackgroundColor="#F6F6F6"
+                        BorderColor="Transparent"
+                        CornerRadius="100"
+                        HeightRequest="100">
+                        <Image
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Source="plus.png"
+                            WidthRequest="40" />
+                    </Frame>
+                    <VerticalStackLayout>
+                        <Image Source="pets_icon.png" />
+                        <Label HorizontalTextAlignment="Center" Text="Meus Pets" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+        <!--  Botão 'Sair da conta' no final da página  -->
+        <Button
+            Grid.Row="2"
+            Margin="20"
+            BackgroundColor="#FF4136"
+            Clicked="OnLogoutClicked"
+            CornerRadius="20"
+            HeightRequest="50"
+            Text="Sair da conta"
+            TextColor="White"
+            VerticalOptions="End" />
+    </Grid>
+</ContentPage>

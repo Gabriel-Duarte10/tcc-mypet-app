@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Markup;
 using Microsoft.Extensions.Logging;
+using tcc_mypet_app.Views.App;
 using tcc_mypet_app.Views.Auth;
 
 namespace tcc_mypet_app
@@ -70,6 +71,7 @@ namespace tcc_mypet_app
         {
             mauiAppBuilder.Services.AddTransient<LoginView>();
             mauiAppBuilder.Services.AddTransient<HomeView>();
+            mauiAppBuilder.Services.AddTransient<AppView>();
 
             return mauiAppBuilder;
         }

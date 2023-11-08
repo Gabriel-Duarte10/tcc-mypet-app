@@ -9,25 +9,45 @@ namespace tcc_mypet_app.Services
 {
     public class TokenService
     {
-        public int? GetUserIdFromToken(string token)
+        public static string GetClaimValue(string token, string claimType)
         {
-            var handler = new JwtSecurityTokenHandler();
-            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
-
-            if (jsonToken == null)
+            try
             {
-                return null;
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+                if (jsonToken != null)
+                {
+                    var claim = jsonToken.Payload[claimType];
+                    return claim?.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Logar ou manipular exceções (como tokens mal formados)
             }
 
-            // Supõe-se que a chave para o ID do usuário é "UserId" no corpo do token.
-            // Se a chave for diferente, ajuste isso de acordo.
-            var userIdClaim = jsonToken.Claims.First(claim => claim.Type == "Id");
-            if (userIdClaim == null)
+            return null;
+        }
+        public static bool VerifyTokenValidity(string token)
+        {
+            try
             {
-                return null;
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+                if (jsonToken != null)
+                {
+                    var expirationTime = jsonToken.ValidTo;
+                    return expirationTime > DateTime.UtcNow;
+                }
             }
-            int userId = int.Parse(userIdClaim.Value);
-            return userId;
+            catch (Exception ex)
+            {
+                // Logar ou manipular exceções (como tokens mal formados)
+            }
+
+            return false;
         }
     }
 }

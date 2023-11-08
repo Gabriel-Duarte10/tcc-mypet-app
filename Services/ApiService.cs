@@ -132,55 +132,100 @@ namespace tcc_mypet_app.Services
         }
         public async Task<TResult> PostFormDataAsync<TResult>(string url, Dictionary<string, string> formData, List<Stream> streams)
         {
+            MultipartFormDataContent content = new MultipartFormDataContent();
             try
             {
-                using (var content = new MultipartFormDataContent())
+                // Adiciona campos de formulário
+                foreach (var field in formData)
                 {
-                    // Adiciona campos de formulário
-                    foreach (var field in formData)
-                    {
-                        content.Add(new StringContent(field.Value), field.Key);
-                    }
-
-                    // Adiciona arquivos
-                    for (int i = 0; i < streams.Count; i++)
-                    {
-                        var stream = streams[i];
-                        stream.Position = 0;  // Certifica-se de que o stream está na posição inicial
-                        var streamContent = new StreamContent(stream);
-                        content.Add(streamContent, "Images", $"image{i}.jpg");  // Ajuste o nome do arquivo conforme necessário
-                    }
-
-                    var response = await client.PostAsync(BaseUrl + url, content);
-
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        var error = await response.Content.ReadAsStringAsync();
-                        await Application.Current.MainPage.DisplayAlert("Error", error, "OK");
-                        return default(TResult);
-                    }
-
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<TResult>(responseContent);
+                    content.Add(new StringContent(field.Value), field.Key);
                 }
+
+                // Adiciona arquivos
+                for (int i = 0; i < streams.Count; i++)
+                {
+                    var stream = streams[i];
+                    stream.Position = 0;  // Certifica-se de que o stream está na posição inicial
+                    var streamContent = new StreamContent(stream);
+                    content.Add(streamContent, "Images", $"image{i}.jpg");  // Ajuste o nome do arquivo conforme necessário
+                }
+
+                var response = await client.PostAsync(BaseUrl + url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    await Application.Current.MainPage.DisplayAlert("Error", error, "OK");
+                    return default(TResult);
+                }
+
+                var responseContent = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TResult>(responseContent);
+                
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
                 throw;
             }
+            finally
+            {
+                // Agora feche o conteúdo e todos os streams associados
+                content.Dispose();
+                foreach (var stream in streams)
+                {
+                    stream.Close();
+                }
+            }
         }
-        //public async Task<TResult> PutFormDataAsync<TResult>(string url, Dictionary<string, string> formData, List<IFormFile> files)
-        //{
-        //    try
-        //    {
+        public async Task<TResult> PutFormDataAsync<TResult>(string url, Dictionary<string, string> formData, List<Stream> streams)
+        {
+            MultipartFormDataContent content = new MultipartFormDataContent();
+            try
+            {
+                // Adiciona campos de formulário
+                foreach (var field in formData)
+                {
+                    content.Add(new StringContent(field.Value), field.Key);
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-        //        throw;
-        //    }
-        //}
+                // Adiciona arquivos
+                // Adiciona arquivos
+                for (int i = 0; i < streams.Count; i++)
+                {
+                    var stream = streams[i];
+                    stream.Position = 0;  // Certifica-se de que o stream está na posição inicial
+                    var streamContent = new StreamContent(stream);
+                    content.Add(streamContent, "Images", $"image{i}.jpg");  // Ajuste o nome do arquivo conforme necessário
+                }
+
+                var response = await client.PutAsync(BaseUrl + url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    await Application.Current.MainPage.DisplayAlert("Error", error, "OK");
+                    return default(TResult);
+                }
+
+                var responseContent = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TResult>(responseContent);
+                
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                throw;
+            }
+            finally
+            {
+                // Agora feche o conteúdo e todos os streams associados
+                content.Dispose();
+                foreach (var stream in streams)
+                {
+                    stream.Close();
+                }
+            }
+        }
     }
 }

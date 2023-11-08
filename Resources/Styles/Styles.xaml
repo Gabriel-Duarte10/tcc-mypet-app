@@ -401,4 +401,7 @@
         <Setter Property="Shell.TabBarUnselectedColor" Value="#5F5F5F" />
         <Setter Property="Shell.TabBarTitleColor" Value="Black" />
     </Style>
+    <Style TargetType="ContentPage">
+        <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+    </Style>
 </ResourceDictionary>

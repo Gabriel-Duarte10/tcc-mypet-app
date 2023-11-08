@@ -9,6 +9,6 @@ public partial class HomeView : ContentPage
     private async void OnStartButtonClicked(object sender, EventArgs e)
     {
         // Navega para a página LoginView
-        await Navigation.PushModalAsync(new CreateUserView());
+        await Navigation.PushModalAsync(new LoginView());
     }
 }
