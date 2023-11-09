@@ -133,6 +133,9 @@
                             HorizontalOptions="Center"
                             Source="plus.png"
                             WidthRequest="40" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPetViewClicked" />
+                        </Frame.GestureRecognizers>
                     </Frame>
                     <VerticalStackLayout>
                         <Image Source="pets_icon.png" />

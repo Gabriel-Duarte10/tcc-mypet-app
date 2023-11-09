@@ -34,6 +34,10 @@ public partial class ProfileView : ContentPage
     {
         await Navigation.PushModalAsync(new EditProfileView());
     }
+    private async void OnPetViewClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new PetView());
+    }
     private void OnLogoutClicked(object sender, EventArgs e)
     {
         var popup = new SpinnerPopup();

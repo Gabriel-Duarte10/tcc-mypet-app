@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.App.PetFormView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="PetFormView"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" BackgroundColor="White">
+            <Image
+                Margin="0,40,0,40"
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                Source="titlemypet.png"
+                WidthRequest="280" />
+            <!--  Nome do Pet  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Nome do Pet"
+                TextColor="#636363" />
+            <Border Margin="0,10,0,0" Padding="15,5,5,5">
+                <Entry
+                    x:Name="EntryName"
+                    Placeholder="Nome do Pet"
+                    TextColor="Black" />
+            </Border>
+
+            <!--  Mês de Nascimento  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Mês de Nascimento"
+                TextColor="#636363" />
+            <Border Margin="0,10,0,0" Padding="15,5,5,5">
+                <Entry
+                    x:Name="EntryBirthMonth"
+                    Keyboard="Numeric"
+                    Placeholder="Mês de Nascimento"
+                    TextColor="Black" />
+            </Border>
+
+            <!--  Ano de Nascimento  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Ano de Nascimento"
+                TextColor="#636363" />
+            <Border Margin="0,10,0,0" Padding="15,5,5,5">
+                <Entry
+                    x:Name="EntryBirthYear"
+                    Keyboard="Numeric"
+                    Placeholder="Ano de Nascimento"
+                    TextColor="Black" />
+            </Border>
+
+            <!--  Gênero  -->
+            <!--  Gênero  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Gênero"
+                TextColor="#636363" />
+            <StackLayout Orientation="Horizontal">
+                <CheckBox x:Name="CheckBoxGenderMale" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Masculino" VerticalOptions="Center" />
+                <CheckBox x:Name="CheckBoxGenderFemale" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Feminino" VerticalOptions="Center" />
+            </StackLayout>
+
+
+            <!--  Descrição  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Descrição"
+                TextColor="#636363" />
+            <Border Margin="0,10,0,0" Padding="15,5,5,5">
+                <Entry
+                    x:Name="EntryDescription"
+                    Placeholder="Descrição"
+                    TextColor="Black" />
+            </Border>
+
+            <!--  Castrado  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Castrado"
+                TextColor="#636363" />
+            <StackLayout Orientation="Horizontal">
+                <CheckBox x:Name="CheckBoxIsNeuteredNo" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Não" VerticalOptions="Center" />
+                <CheckBox x:Name="CheckBoxIsNeuteredYes" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Sim" VerticalOptions="Center" />
+            </StackLayout>
+
+            <!--  Vacinado  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Vacinado"
+                TextColor="#636363" />
+            <StackLayout Orientation="Horizontal">
+                <CheckBox x:Name="CheckBoxIsVaccinatedNo" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Não" VerticalOptions="Center" />
+                <CheckBox x:Name="CheckBoxIsVaccinatedYes" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Sim" VerticalOptions="Center" />
+            </StackLayout>
+
+            <!--  Status de Adoção  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Status de Adoção"
+                TextColor="#636363" />
+            <StackLayout Orientation="Horizontal">
+                <CheckBox x:Name="CheckBoxAdoptionStatusNo" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Não" VerticalOptions="Center" />
+                <CheckBox x:Name="CheckBoxAdoptionStatusYes" CheckedChanged="OnCheckedChanged" />
+                <Label Text="Sim" VerticalOptions="Center" />
+            </StackLayout>
+
+            <!--  Característica  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Característica"
+                TextColor="#636363" />
+
+            <StackLayout Margin="0,7,0,0">
+                <Border Padding="15,5,5,5">
+                    <Grid>
+                        <Picker
+                            x:Name="PickerCharacteristicId"
+                            Title="Característica"
+                            TextColor="Black" />
+                        <Image
+                            Margin="0,0,10,0"
+                            HorizontalOptions="End"
+                            Source="arrowdown.png"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </StackLayout>
+            <!--  Raça  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Raça"
+                TextColor="#636363" />
+
+            <StackLayout Margin="0,7,0,0">
+                <Border Padding="15,5,5,5">
+                    <Grid>
+                        <Picker
+                            x:Name="PickerBreedId"
+                            Title="Raça"
+                            TextColor="Black" />
+                        <Image
+                            Margin="0,0,10,0"
+                            HorizontalOptions="End"
+                            Source="arrowdown.png"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </StackLayout>
+            <!--  Tamanho  -->
+            <Label
+                Margin="0,7,0,0"
+                FontFamily="PoppinsRegular"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="Tamanho"
+                TextColor="#636363" />
+
+            <StackLayout Margin="0,7,0,0">
+                <Border Padding="15,5,5,5">
+                    <Grid>
+                        <Picker
+                            x:Name="PickerSizeId"
+                            Title="Tamanho"
+                            TextColor="Black" />
+                        <Image
+                            Margin="0,0,10,0"
+                            HorizontalOptions="End"
+                            Source="arrowdown.png"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </StackLayout>
+            <HorizontalStackLayout Spacing="30">
+                <Grid
+                    Margin="0,20,0,0"
+                    HeightRequest="150"
+                    WidthRequest="100">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Clicked="OnAddImageButtonClicked"
+                        CommandParameter="1"
+                        Opacity="0.4" />
+                    <Image
+                        HorizontalOptions="Center"
+                        Opacity="0.3"
+                        Source="plus.png"
+                        VerticalOptions="Center" />
+                    <Image
+                        x:Name="SelectedImage1"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center" />
+                </Grid>
+                <Grid
+                    Margin="0,20,0,0"
+                    HeightRequest="150"
+                    WidthRequest="100">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Clicked="OnAddImageButtonClicked"
+                        CommandParameter="2"
+                        Opacity="0.4" />
+                    <Image
+                        HorizontalOptions="Center"
+                        Opacity="0.3"
+                        Source="plus.png"
+                        VerticalOptions="Center" />
+                    <Image
+                        x:Name="SelectedImage2"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center" />
+                </Grid>
+                <Grid
+                    Margin="0,20,0,0"
+                    HeightRequest="150"
+                    WidthRequest="100">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Clicked="OnAddImageButtonClicked"
+                        CommandParameter="3"
+                        Opacity="0.4" />
+                    <Image
+                        HorizontalOptions="Center"
+                        Opacity="0.3"
+                        Source="plus.png"
+                        VerticalOptions="Center" />
+                    <Image
+                        x:Name="SelectedImage3"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center" />
+                </Grid>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="30">
+                <Grid
+                    Margin="0,20,0,0"
+                    HeightRequest="150"
+                    WidthRequest="100">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Clicked="OnAddImageButtonClicked"
+                        CommandParameter="4"
+                        Opacity="0.4" />
+                    <Image
+                        HorizontalOptions="Center"
+                        Opacity="0.3"
+                        Source="plus.png"
+                        VerticalOptions="Center" />
+                    <Image
+                        x:Name="SelectedImage4"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center" />
+                </Grid>
+                <Grid
+                    Margin="0,20,0,0"
+                    HeightRequest="150"
+                    WidthRequest="100">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Clicked="OnAddImageButtonClicked"
+                        CommandParameter="5"
+                        Opacity="0.4" />
+                    <Image
+                        HorizontalOptions="Center"
+                        Opacity="0.3"
+                        Source="plus.png"
+                        VerticalOptions="Center" />
+                    <Image
+                        x:Name="SelectedImage5"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center" />
+                </Grid>
+                <Grid
+                    Margin="0,20,0,0"
+                    HeightRequest="150"
+                    WidthRequest="100">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Clicked="OnAddImageButtonClicked"
+                        CommandParameter="6"
+                        Opacity="0.4" />
+                    <Image
+                        HorizontalOptions="Center"
+                        Opacity="0.3"
+                        Source="plus.png"
+                        VerticalOptions="Center" />
+                    <Image
+                        x:Name="SelectedImage6"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center" />
+                </Grid>
+            </HorizontalStackLayout>
+            <!--  Botão de submissão  -->
+            <Button
+                Margin="10,30"
+                Padding="15"
+                BackgroundColor="#FF8A00"
+                Clicked="OnSubmitButtonClicked"
+                CornerRadius="12"
+                FontFamily="PoppinsRegular"
+                FontSize="22"
+                Text="Cadastrar Pet"
+                TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
