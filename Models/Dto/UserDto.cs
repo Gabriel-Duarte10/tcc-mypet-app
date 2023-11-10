@@ -19,6 +19,13 @@
             public double Longitude { get; set; }
             public double Latitude { get; set; }
             public List<UserImageDto> UserImages { get; set; }
+            public string FormattedAddress
+            {
+                get
+                {
+                    return $"{Street}, {Number} - {City}, {State}, {ZipCode}";
+                }
+            }
         }
 
         public class UserImageDto

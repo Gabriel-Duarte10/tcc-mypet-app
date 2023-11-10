@@ -342,6 +342,7 @@
             </HorizontalStackLayout>
             <!--  Botão de submissão  -->
             <Button
+                x:Name="SubmitButton"
                 Margin="10,30"
                 Padding="15"
                 BackgroundColor="#FF8A00"
