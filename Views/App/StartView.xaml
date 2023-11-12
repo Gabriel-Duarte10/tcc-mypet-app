@@ -4,10 +4,130 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     NavigationPage.HasNavigationBar="False">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="15">
+            <Grid Margin="0,30,0,40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Margin="-40,0,0,0"
+                    HorizontalOptions="StartAndExpand"
+                    Source="titlemypet.png"
+                    VerticalOptions="Center" />
+                <Image
+                    HorizontalOptions="End"
+                    Source="plus.png"
+                    VerticalOptions="Center"
+                    WidthRequest="40">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPetFormViewClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <BoxView
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    WidthRequest="1111"
+                    Color="#F6F6F6" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="Start"
+                    Text="Disponiveis Adoção:"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <CollectionView x:Name="PetsCollectionView" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,15,0,0" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="149" />
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="Fill"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="{Binding PetImages[0].Image64}"
+                                    VerticalOptions="FillAndExpand" />
+
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    Spacing="8">
+                                    <Label
+                                        x:Name="LabelNome"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        HorizontalOptions="FillAndExpand"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding Name}" />
+                                    <Label
+                                        x:Name="LabelDescricao"
+                                        FontSize="12"
+                                        HorizontalOptions="FillAndExpand"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding Description}" />
+                                    <Label
+                                        x:Name="LabelEndereco"
+                                        FontSize="12"
+                                        HorizontalOptions="FillAndExpand"
+                                        LineBreakMode="WordWrap"
+                                        MaxLines="3"
+                                        Text="{Binding User.FormattedAddress}" />
+                                    <HorizontalStackLayout Spacing="20">
+                                        <HorizontalStackLayout
+                                            x:Name="LabelVacina"
+                                            IsVisible="{Binding IsVaccinated}"
+                                            Spacing="5">
+                                            <Image
+                                                HorizontalOptions="End"
+                                                Source="vaccine.png"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="12"
+                                                HorizontalOptions="FillAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="Vacinado" />
+
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout
+                                            x:Name="LabelCastrado"
+                                            IsVisible="{Binding IsNeutered}"
+                                            Spacing="5">
+                                            <Image
+                                                HorizontalOptions="End"
+                                                Source="castrated.png"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="12"
+                                                HorizontalOptions="FillAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="Castrado" />
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnFrameTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

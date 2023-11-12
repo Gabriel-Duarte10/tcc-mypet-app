@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.App.PetViewComplete"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15">
+            <Frame
+                Padding="10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <CarouselView
+                        x:Name="carouselView"
+                        HeightRequest="500"
+                        IndicatorView="indicatorView"
+                        ItemsSource="{Binding PetImages}"
+                        WidthRequest="322">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Image Aspect="AspectFill" Source="{Binding Image64}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+
+                    <IndicatorView
+                        x:Name="indicatorView"
+                        HorizontalOptions="Center"
+                        IndicatorColor="LightGray"
+                        SelectedIndicatorColor="DarkGray" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="PoppinsRegular"
+                        FontSize="24"
+                        Text="{Binding Name}" />
+                    <HorizontalStackLayout Spacing="20">
+                        <HorizontalStackLayout
+                            x:Name="LabelVacina"
+                            IsVisible="{Binding IsVaccinated}"
+                            Spacing="5">
+                            <Image
+                                HorizontalOptions="End"
+                                Source="vaccine.png"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="FillAndExpand"
+                                LineBreakMode="WordWrap"
+                                Text="Vacinado" />
+
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout
+                            x:Name="LabelCastrado"
+                            IsVisible="{Binding IsNeutered}"
+                            Spacing="5">
+                            <Image
+                                HorizontalOptions="End"
+                                Source="castrated.png"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="FillAndExpand"
+                                LineBreakMode="WordWrap"
+                                Text="Castrado" />
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="PoppinsRegular"
+                        Text="Descrição" />
+                    <Label FontFamily="PoppinsRegular" Text="{Binding Description}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="PoppinsRegular"
+                        Text="Detalhes" />
+                    <HorizontalStackLayout Spacing="30">
+                        <Label FontFamily="PoppinsRegular" Text="{Binding Breed.Name, StringFormat='Raça: {0}'}" />
+                        <Label FontFamily="PoppinsRegular" Text="{Binding Size.Name, StringFormat='Tamanho: {0}'}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="30">
+                        <Label FontFamily="PoppinsRegular" Text="{Binding GenderText, StringFormat='Gênero: {0}'}" />
+                        <Label FontFamily="PoppinsRegular" Text="{Binding User.Name, StringFormat='Dono: {0}'}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="30">
+                        <Label FontFamily="PoppinsRegular" Text="{Binding Characteristic.Name, StringFormat='Traços: {0}'}" />
+
+                        <Label FontFamily="PoppinsRegular" Text="{Binding Idade, StringFormat='Idade: {0}'}" />
+                    </HorizontalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="PoppinsRegular"
+                        Text="Localização" />
+                    <HorizontalStackLayout Spacing="5">
+                        <Image
+                            HorizontalOptions="End"
+                            Source="mapsblack.png"
+                            VerticalOptions="Start" />
+                        <Label
+                            FontFamily="PoppinsRegular"
+                            HorizontalOptions="FillAndExpand"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding User.FormattedAddressNumber}"
+                            VerticalOptions="Start"
+                            WidthRequest="320" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Button
+                            Padding="15"
+                            BackgroundColor="#FF8A00"
+                            CornerRadius="12"
+                            FontFamily="PoppinsRegular"
+                            FontSize="14"
+                            Text="Abrir chat"
+                            TextColor="White" />
+                        <Button
+                            Padding="15"
+                            BackgroundColor="#0EB7FF"
+                            CornerRadius="12"
+                            FontFamily="PoppinsRegular"
+                            FontSize="14"
+                            Text="Favoritar"
+                            TextColor="White" />
+                        <Button
+                            Padding="15"
+                            BackgroundColor="Gray"
+                            CornerRadius="12"
+                            FontFamily="PoppinsRegular"
+                            FontSize="14"
+                            Text="Reportar"
+                            TextColor="White" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

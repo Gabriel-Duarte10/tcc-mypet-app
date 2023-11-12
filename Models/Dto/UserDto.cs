@@ -26,7 +26,14 @@
                     return $"{Street}, {Number} - {City}, {State}, {ZipCode}";
                 }
             }
+        public string FormattedAddressNumber
+        {
+            get
+            {
+                return $"{Street} - {City}, {State}, {ZipCode}";
+            }
         }
+    }
 
         public class UserImageDto
         {
