@@ -82,6 +82,9 @@
 	  <MauiXaml Update="Views\App\EditProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\App\FavoriteView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\App\MessageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

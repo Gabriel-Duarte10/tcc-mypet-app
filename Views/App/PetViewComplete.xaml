@@ -108,29 +108,46 @@
                             VerticalOptions="Start"
                             WidthRequest="320" />
                     </HorizontalStackLayout>
-                    <HorizontalStackLayout Spacing="10">
+                    <HorizontalStackLayout
+                        Margin="0,15,0,0"
+                        HorizontalOptions="Center"
+                        Spacing="10">
                         <Button
-                            Padding="15"
+                            Padding="10"
                             BackgroundColor="#FF8A00"
                             CornerRadius="12"
                             FontFamily="PoppinsRegular"
-                            FontSize="14"
+                            FontSize="13"
                             Text="Abrir chat"
                             TextColor="White" />
                         <Button
-                            Padding="15"
+                            x:Name="FavoriteButton"
+                            Padding="10"
                             BackgroundColor="#0EB7FF"
+                            Clicked="OnFavoriteClicked"
                             CornerRadius="12"
                             FontFamily="PoppinsRegular"
-                            FontSize="14"
+                            FontSize="13"
                             Text="Favoritar"
                             TextColor="White" />
                         <Button
-                            Padding="15"
-                            BackgroundColor="Gray"
+                            x:Name="DesfavoriteButton"
+                            Padding="10"
+                            BackgroundColor="Red"
+                            Clicked="OnDesfavoriteClicked"
                             CornerRadius="12"
                             FontFamily="PoppinsRegular"
-                            FontSize="14"
+                            FontSize="13"
+                            IsVisible="false"
+                            Text="Desfavoritar"
+                            TextColor="White" />
+                        <Button
+                            Padding="10"
+                            BackgroundColor="Gray"
+                            Clicked="OnReportClicked"
+                            CornerRadius="12"
+                            FontFamily="PoppinsRegular"
+                            FontSize="13"
                             Text="Reportar"
                             TextColor="White" />
                     </HorizontalStackLayout>

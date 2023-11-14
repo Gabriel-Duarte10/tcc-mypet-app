@@ -39,7 +39,15 @@
                     Text="Veja os seus animais cadastrados"
                     VerticalOptions="Center" />
             </Grid>
-
+            <Label
+                x:Name="LabelListNull"
+                Margin="0,230,0,0"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                IsVisible="false"
+                Text="Não há animais nas proxmidades"
+                VerticalOptions="Center" />
             <CollectionView x:Name="PetsCollectionView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

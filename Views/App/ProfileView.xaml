@@ -113,6 +113,9 @@
                             HorizontalOptions="Center"
                             Source="starblue.png"
                             WidthRequest="40" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFavoritePetViewClicked" />
+                        </Frame.GestureRecognizers>
                     </Frame>
                     <VerticalStackLayout>
                         <Image Source="star_icon.png" />

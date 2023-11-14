@@ -38,6 +38,10 @@ public partial class ProfileView : ContentPage
     {
         await Navigation.PushModalAsync(new PetView());
     }
+    private async void OnFavoritePetViewClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new FavoriteView());
+    }
     private void OnLogoutClicked(object sender, EventArgs e)
     {
         var popup = new SpinnerPopup();

@@ -3,8 +3,7 @@
     x:Class="tcc_mypet_app.Services.SpinnerPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
-    <VerticalStackLayout BackgroundColor="Transparent">
-        <ActivityIndicator BackgroundColor="Transparent" IsRunning="True" />
-    </VerticalStackLayout>
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+    <ActivityIndicator BackgroundColor="#666666" IsRunning="True" />
 </toolkit:Popup>

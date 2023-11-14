@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="tcc_mypet_app.Views.App.StartView"
+    x:Class="tcc_mypet_app.Views.App.FavoriteView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     NavigationPage.HasNavigationBar="False">
     <ScrollView>
         <VerticalStackLayout Padding="15">
-            <Grid Margin="0,30,0,40">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Image
-                    Margin="-40,0,0,0"
-                    HorizontalOptions="StartAndExpand"
-                    Source="titlemypet.png"
-                    VerticalOptions="Center" />
-                <Image
-                    HorizontalOptions="End"
-                    Source="plus.png"
-                    VerticalOptions="Center"
-                    WidthRequest="40">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnPetFormViewClicked" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </Grid>
+
+            <Image
+                Margin="0,0,0,0"
+                HorizontalOptions="StartAndExpand"
+                Source="titlemypet.png"
+                VerticalOptions="Center" />
 
             <Grid Grid.Row="0" Margin="0,0,0,10">
                 <BoxView
@@ -36,9 +22,9 @@
                     Color="#F6F6F6" />
                 <Label
                     FontAttributes="Bold"
-                    FontSize="22"
+                    FontSize="18"
                     HorizontalOptions="Start"
-                    Text="Disponiveis Adoção:"
+                    Text="Favoritos Disponiveis Adoção:"
                     VerticalOptions="Center" />
             </Grid>
             <Label

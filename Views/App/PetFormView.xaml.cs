@@ -21,9 +21,6 @@ public partial class PetFormView : ContentPage
         _User = JsonSerializer.Deserialize<UserDto>(jsonString);
         // Aguarda o carregamento dos Pickers
 
-
-
-
         LoadPetData();
     }
 
