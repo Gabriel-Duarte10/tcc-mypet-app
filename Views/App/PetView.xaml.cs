@@ -28,6 +28,10 @@ public partial class PetView : ContentPage
         {
             LabelListNull.IsVisible = true;
         }
+        else
+        {
+            LabelListNull.IsVisible = false;
+        }
         PetsCollectionView.ItemsSource = petsReturn;
         popup.Close();
     }
@@ -44,6 +48,9 @@ public partial class PetView : ContentPage
                     listDtoReturn.Add(item);
                 }
             }
+        }else
+        {
+            listDtoReturn = petDTOs;
         }
         return listDtoReturn;
     }

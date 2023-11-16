@@ -27,15 +27,21 @@
                     Text="Favoritos Disponiveis Adoção:"
                     VerticalOptions="Center" />
             </Grid>
-            <Label
+            <StackLayout
                 x:Name="LabelListNull"
-                Margin="0,230,0,0"
-                FontAttributes="Bold"
-                FontSize="18"
-                HorizontalOptions="Center"
+                Margin="0,100,0,0"
                 IsVisible="false"
-                Text="Não há animais nas proxmidades"
-                VerticalOptions="Center" />
+                VerticalOptions="Center">
+                <Image
+                    Margin="0,0,0,10"
+                    HorizontalOptions="Center"
+                    Source="animaisnull.png" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    Text="Não há animais favoritados" />
+            </StackLayout>
             <CollectionView x:Name="PetsCollectionView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

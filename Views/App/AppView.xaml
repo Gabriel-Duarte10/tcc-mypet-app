@@ -10,7 +10,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:StartView}" Route="startView" />
         </Tab>
         <Tab Title="Mensagens" Icon="message.png">
-            <ShellContent ContentTemplate="{DataTemplate views:MessageView}" Route="messageView" />
+            <ShellContent ContentTemplate="{DataTemplate views:ChatView}" Route="chatView" />
         </Tab>
         <Tab Title="Perfil" Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate views:ProfileView}" Route="profileView" />

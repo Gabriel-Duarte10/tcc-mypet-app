@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.App.ChatView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="15">
+            <Grid Margin="0,30,0,40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Margin="-40,0,0,0"
+                    HorizontalOptions="StartAndExpand"
+                    Source="titlemypet.png"
+                    VerticalOptions="Center" />
+                <Image
+                    HorizontalOptions="End"
+                    Source="plus.png"
+                    VerticalOptions="Center"
+                    WidthRequest="40">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPetFormViewClicked" />
+                    </Image.GestureRecognizers>
+
+                </Image>
+            </Grid>
+
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <BoxView
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    WidthRequest="1111"
+                    Color="#F6F6F6" />
+                <Label
+                    HorizontalOptions="Start"
+                    Text="Clique na foto para detalhes do pet ou no quadro para conversar com o dono."
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <StackLayout
+                x:Name="StackLayoutNull"
+                Margin="0,100,0,0"
+                IsVisible="false"
+                VerticalOptions="Center">
+                <Image
+                    Margin="0,0,0,10"
+                    HorizontalOptions="Center"
+                    Source="messagenull.png" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    Text="Suas conversas aparecem aqui" />
+            </StackLayout>
+
+            <CollectionView x:Name="ChatsCollectionView" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,15,0,0"
+                            Padding="0"
+                            HasShadow="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="120" />
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Frame
+                                        Grid.Column="0"
+                                        CornerRadius="60"
+                                        HeightRequest="100"
+                                        IsClippedToBounds="True"
+                                        WidthRequest="100">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            HeightRequest="100"
+                                            Source="{Binding Pet.PetImages[0].Image64}"
+                                            WidthRequest="100" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnFrameTapped" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                    <Frame
+                                        Grid.Column="0"
+                                        Margin="65,40,0,0"
+                                        CornerRadius="30"
+                                        HeightRequest="50"
+                                        IsClippedToBounds="True"
+                                        WidthRequest="50">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            HeightRequest="50"
+                                            Source="{Binding UserPet.UserImages[0].Image64}"
+                                            WidthRequest="50" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnFrameTapped" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+
+                                </Grid>
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    Spacing="15">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="{Binding Pet.Name}" />
+                                    <Label FontSize="12" Text="{Binding UserPet.Name, StringFormat='Dono: {0}'}" />
+                                    <Label FontSize="12" Text="{Binding DataCreate, StringFormat='Chat criado: {0}'}" />
+                                    <VerticalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnChatDetailViewClicked" />
+                                    </VerticalStackLayout.GestureRecognizers>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Frame.Shadow>
+                                <Shadow
+                                    Brush="Black"
+                                    Opacity="0.8"
+                                    Radius="40"
+                                    Offset="20,20" />
+                            </Frame.Shadow>
+
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -29,6 +29,10 @@ public partial class StartView : ContentPage
         {
             LabelListNull.IsVisible = true;
         }
+        else
+        {
+            LabelListNull.IsVisible = false;    
+        }
         PetsCollectionView.ItemsSource = petsReturn;
 
         //deley de 2 segundos para aparecer a tela
@@ -67,7 +71,6 @@ public partial class StartView : ContentPage
     {
         var petFormView = new PetFormView();
         await Navigation.PushModalAsync(petFormView);
-
     }
 
     private async void OnFrameTapped(object sender, EventArgs e)

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tcc_mypet_app.Views.App.ChatDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ChatDetailPage">
+
+    <!--  Usando Grid para dividir a tela  -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <!--  A maior parte da tela para as mensagens  -->
+            <RowDefinition Height="*" />
+            <!--  Espaço fixo para o campo de entrada e botão  -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackLayout
+            Grid.Row="0"
+            Padding="10"
+            BackgroundColor="#FFF8F0"
+            Orientation="Horizontal"
+            VerticalOptions="Center">
+            <!--  Imagem do Pet  -->
+            <StackLayout.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.7"
+                    Radius="22"
+                    Offset="0,0" />
+            </StackLayout.Shadow>
+            <Frame
+                CornerRadius="60"
+                HeightRequest="60"
+                IsClippedToBounds="True"
+                WidthRequest="60">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="100"
+                    Source="{Binding UserPetChatSessionDTO.Pet.PetImages[0].Image64}"
+                    WidthRequest="100" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnFrameTapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <!--  Nome do Pet  -->
+            <Label
+                Margin="15,0,0,0"
+                FontAttributes="Bold"
+                FontSize="15"
+                Text="{Binding UserPetChatSessionDTO.Pet.Name}"
+                TextColor="Black"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+        <!--  ScrollView para as mensagens  -->
+        <Grid Grid.Row="1" Margin="0,0,0,0">
+            <!--  Imagem de fundo  -->
+            <Image Aspect="AspectFill" Source="fundochat.png" />
+
+            <!--  ScrollView para as mensagens  -->
+            <ScrollView>
+                <CollectionView
+                    x:Name="MessagesList"
+                    ItemsSource="{Binding ChatMessages}"
+                    VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10" HorizontalOptions="{Binding PositionSender}">
+                                <Label
+                                    Text="{Binding SenderUser}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <Frame
+                                    Padding="15"
+                                    BackgroundColor="{Binding CorSender}"
+                                    CornerRadius="12">
+                                    <Label
+                                        Text="{Binding Text}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
+
+        <!--  Área de entrada de texto e botão na base  -->
+        <Frame
+            Grid.Row="2"
+            Margin="10,0,10,0"
+            Padding="10,0,0,0"
+            HeightRequest="50">
+            <StackLayout Orientation="Horizontal">
+                <Entry
+                    x:Name="MessageEntry"
+                    HeightRequest="70"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Digite uma mensagem..." />
+                <Button
+                    BackgroundColor="#FF8A00"
+                    Clicked="OnSend"
+                    Text="Enviar"
+                    VerticalOptions="FillAndExpand" />
+            </StackLayout>
+        </Frame>
+
+
+    </Grid>
+</ContentPage>

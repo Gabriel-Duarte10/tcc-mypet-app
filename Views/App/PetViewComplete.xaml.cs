@@ -11,18 +11,24 @@ public partial class PetViewComplete : ContentPage
 {
     private readonly ApiService _api = new ApiService();
     public readonly int idPet;
+    public readonly int idUserPet;
     public event Action OnPetUpdated;
     public PetViewComplete(PetDTO selectedPet = null)
     {
         InitializeComponent();
         this.BindingContext = selectedPet;
         this.idPet = selectedPet.Id;
+        this.idUserPet = selectedPet.User.Id;
         // Verifica se o pet está na lista de favoritos
         CheckIfPetIsFavorite();
     }
     private void CheckIfPetIsFavorite()
     {
         var list = Preferences.Get("ListFavorite", string.Empty);
+        if(string.IsNullOrEmpty(list))
+        {
+            return;
+        }
         var listArray = JsonSerializer.Deserialize<List<int>>(list);
         if (!string.IsNullOrEmpty(list) && listArray.Contains(this.idPet))
         {
@@ -113,6 +119,24 @@ public partial class PetViewComplete : ContentPage
             Preferences.Set("ListFavorite", newList);
             FavoriteButton.IsVisible = true;
             DesfavoriteButton.IsVisible = false;
+        }
+    }
+    private async void OnAbrirChatClicked(object sender, EventArgs e)
+    {
+        string jsonString = Preferences.Get("User", string.Empty);
+        var user = JsonSerializer.Deserialize<UserDto>(jsonString);
+        var chatSession = new UserPetChatSessionRequest
+        {
+            PetId = this.idPet,
+            User1Id = user.Id,
+            User2Id = this.idUserPet
+        };
+
+        var result = await _api.PostAsync<UserPetChatSessionRequest, UserPetChatSessionDTO>("CreateSession", chatSession);
+        if(result != null)
+        {
+            var chatDetailPage = new ChatDetailPage(result);
+            await Navigation.PushModalAsync(chatDetailPage);
         }
     }
 }

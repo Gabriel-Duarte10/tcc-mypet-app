@@ -115,6 +115,7 @@
                         <Button
                             Padding="10"
                             BackgroundColor="#FF8A00"
+                            Clicked="OnAbrirChatClicked"
                             CornerRadius="12"
                             FontFamily="PoppinsRegular"
                             FontSize="13"

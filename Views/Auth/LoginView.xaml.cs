@@ -34,7 +34,12 @@ public partial class LoginView : ContentPage
             {
                 string jsonString = JsonSerializer.Serialize(userDto);
                 Preferences.Default.Set("User", jsonString);
-                Application.Current.MainPage = new NavigationPage(new AppView());
+                await Navigation.PopModalAsync();
+
+                // Atualizar a MainPage no thread principal
+                MainThread.BeginInvokeOnMainThread(() => {
+                    Application.Current.MainPage = new NavigationPage(new AppView());
+                });
             }
         }
         else
