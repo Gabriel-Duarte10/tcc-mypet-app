@@ -35,8 +35,6 @@
                     WidthRequest="1111"
                     Color="#F6F6F6" />
                 <Label
-                    FontAttributes="Bold"
-                    FontSize="22"
                     HorizontalOptions="Start"
                     Text="Disponiveis Adoção:"
                     VerticalOptions="Center" />
