@@ -33,6 +33,7 @@ public partial class StartView : ContentPage
         {
             LabelListNull.IsVisible = false;    
         }
+        PetsCollectionView.ItemsSource = null;
         PetsCollectionView.ItemsSource = petsReturn;
 
         //deley de 2 segundos para aparecer a tela
@@ -92,6 +93,12 @@ public partial class StartView : ContentPage
 
         }
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
 
+        // Chama a função para carregar os dados
+        LoadDataAsync();
+    }
 
 }

@@ -14,7 +14,7 @@ namespace tcc_mypet_app.Views.Auth;
 public partial class CreateUserView : ContentPage
 {
     // Se estiver usando MVVM, você pode mover este comando para o seu ViewModel
- 
+
     private readonly ApiService Api = new ApiService();
     private readonly ViaCEPService viaCEPService = new ViaCEPService();
 
@@ -78,11 +78,22 @@ public partial class CreateUserView : ContentPage
                 };
                 SelectedImage.IsVisible = true;
                 // Set the source to the copy of the stream
-                SelectedImage.Source = ImageSource.FromStream(() => new MemoryStream(memoryStream.ToArray()));
+                SelectedImage.Source = ImageSource.FromStream(
+                    () => new MemoryStream(memoryStream.ToArray())
+                );
             }
         }
     }
-
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        foreach (var stream in ImageStreams)
+        {
+            stream?.Close();
+            stream?.Dispose();
+        }
+        ImageStreams.Clear();
+    }
     private async void OnZipCodeTextChanged(object sender, TextChangedEventArgs e)
     {
         string cep = e.NewTextValue;
@@ -113,37 +124,48 @@ public partial class CreateUserView : ContentPage
     {
         var popup = new SpinnerPopup();
         this.ShowPopup(popup);
-        // Criando o dicionário para os campos de formulário
-        var formData = new Dictionary<string, string>
+        try
         {
-            { "Name", EntryNome.Text },
-            { "Email", EntryEmail.Text },
-            { "Password", EntryPassword.Text },
-            { "Cellphone", EntryCellphone.Text },
-            { "ZipCode", EntryZipCode.Text },
-            { "Street", EntryStreet.Text },
-            { "Number", EntryNumber.Text },
-            { "State", EntryState.Text },
-            { "City", EntryCity.Text },
-            { "IsActive", "true" } // supondo que IsActive seja sempre true
-        };
+            // Criando o dicionário para os campos de formulário
+            var formData = new Dictionary<string, string>
+            {
+                { "Name", EntryNome.Text },
+                { "Email", EntryEmail.Text },
+                { "Password", EntryPassword.Text },
+                { "Cellphone", EntryCellphone.Text },
+                { "ZipCode", EntryZipCode.Text },
+                { "Street", EntryStreet.Text },
+                { "Number", EntryNumber.Text },
+                { "State", EntryState.Text },
+                { "City", EntryCity.Text },
+                { "IsActive", "true" } // supondo que IsActive seja sempre true
+            };
 
-        // Convertendo ImageStreams para List<IFormFile>
-        // Convertendo ImageStreams para List<Stream> (já é uma List<Stream>, então não é necessário ToList())
-        var images = ImageStreams;
+            // Convertendo ImageStreams para List<IFormFile>
+            // Convertendo ImageStreams para List<Stream> (já é uma List<Stream>, então não é necessário ToList())
+            var images = ImageStreams;
 
-        
-        // Usando o novo método PostFormDataAsync
-        var userDto = await Api.PostFormDataAsync<UserDto>("User", formData, images);
+            // Usando o novo método PostFormDataAsync
 
-        if(userDto != null)
-        {
-            await DisplayAlert("Sucesso", "Usuário criado com sucesso", "OK");
-            popup.Close();
-            Navigation.PopModalAsync();
+            var userDto = await Api.PostFormDataAsync<UserDto>("User", formData, images);
+
+            if (userDto != null)
+            {
+                await DisplayAlert("Sucesso", "Usuário criado com sucesso", "OK");
+                popup.Close();
+                Navigation.PopModalAsync();
+            }
         }
-
-
-        
+        catch (Exception)
+        {
+            popup.Close();
+            foreach (var stream in ImageStreams)
+            {
+                stream?.Close();
+                stream?.Dispose();
+            }
+            ImageStreams.Clear();
+            ImageStreams = new List<Stream>();
+        }
     }
 }

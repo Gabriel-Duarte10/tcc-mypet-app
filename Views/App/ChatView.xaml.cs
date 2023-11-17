@@ -14,6 +14,13 @@ public partial class ChatView : ContentPage
 		InitializeComponent();
         LoadDataAsync();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Chama a função para carregar os dados
+        LoadDataAsync();
+    }
     private async Task LoadDataAsync()
     {
         var popup = new SpinnerPopup();
@@ -56,10 +63,18 @@ public partial class ChatView : ContentPage
     {
         if (sender is Frame frame && frame.BindingContext is UserPetChatSessionDTO UserPetChat)
         {
-            var petViewComplete = new PetViewComplete(UserPetChat.Pet);
+            if(_User.Id != UserPetChat.Pet.User.Id)
+            {
+                var petViewComplete = new PetViewComplete(UserPetChat.Pet);
 
-            await Navigation.PushModalAsync(petViewComplete);
+                await Navigation.PushModalAsync(petViewComplete);
+            }
+            else
+            {
+                var petFormView = new PetFormView(UserPetChat.Pet);
 
+                await Navigation.PushModalAsync(petFormView);
+            }
         }
     }
 }

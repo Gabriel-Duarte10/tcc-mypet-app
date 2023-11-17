@@ -195,19 +195,31 @@ public partial class EditProfileView : ContentPage
 
 
         // Usando o novo método PostFormDataAsync
-        var userDto = await Api.PutFormDataAsync<UserDto>("User/" + _User.Id, formData, images);
-        if (userDto != null)
+        try
         {
-            string jsonString = JsonSerializer.Serialize(userDto);
-            Preferences.Default.Remove("User");
-            Preferences.Default.Set("User", jsonString);
-        }
+            var userDto = await Api.PutFormDataAsync<UserDto>("User/" + _User.Id, formData, images);
+            if (userDto != null)
+            {
+                string jsonString = JsonSerializer.Serialize(userDto);
+                Preferences.Default.Remove("User");
+                Preferences.Default.Set("User", jsonString);
+            }
 
-        if (userDto != null)
-        {
-            await DisplayAlert("Sucesso", "Usuário atualizado com sucesso", "OK");
-            popup.Close();
-            Navigation.PopModalAsync();
+            if (userDto != null)
+            {
+                await DisplayAlert("Sucesso", "Usuário atualizado com sucesso", "OK");
+               
+            }
         }
+        catch (Exception)
+        {
+            
+            throw;
+        }
+        finally
+        {
+            await Navigation.PopModalAsync();
+            popup.Close();
+        }   
     }
 }

@@ -33,6 +33,7 @@ public partial class FavoriteView : ContentPage
         {
             LabelListNull.IsVisible = false;
         }
+        PetsCollectionView.ItemsSource = null;
         PetsCollectionView.ItemsSource = petsReturn;
 
         //deley de 2 segundos para aparecer a tela

@@ -49,7 +49,7 @@ public partial class ProfileView : ContentPage
 
         Preferences.Default.Remove("Token");
         Preferences.Default.Remove("User");
-        Application.Current.MainPage = new NavigationPage(new LoginView());
+        Application.Current.MainPage = new NavigationPage(new HomeView());
 
         popup.Close();
     }

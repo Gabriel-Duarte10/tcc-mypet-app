@@ -32,6 +32,8 @@ public partial class PetView : ContentPage
         {
             LabelListNull.IsVisible = false;
         }
+        //limpar a collection view
+        PetsCollectionView.ItemsSource = null;
         PetsCollectionView.ItemsSource = petsReturn;
         popup.Close();
     }

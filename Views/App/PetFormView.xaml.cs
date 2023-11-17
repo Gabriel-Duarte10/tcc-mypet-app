@@ -272,7 +272,7 @@ public partial class PetFormView : ContentPage
                 {
                     OnPetUpdated?.Invoke();
                     await DisplayAlert("Sucesso", "Pet criado com sucesso", "OK");
-                    Navigation.PopModalAsync();
+                    
                 }
             }
             else
@@ -290,16 +290,17 @@ public partial class PetFormView : ContentPage
                 {
                     OnPetUpdated?.Invoke();
                     await DisplayAlert("Sucesso", "Pet atualizado com sucesso", "OK");
-                    Navigation.PopModalAsync();
+                    
                 }
             }
         }
         catch (Exception ex)
         {
-            // Trate o erro aqui
+            
         }
         finally
         {
+            await Navigation.PopModalAsync();
             popup.Close();
         }
     }
